@@ -1,6 +1,13 @@
 <?php
 namespace shipping;
 
+class Parcel
+{
+  public $weight;
+  public $destinationAddress;
+  public $destinationCountry;
+}
+
 class Courier
 {
     public $name;
@@ -15,7 +22,18 @@ class Courier
     public function ship($parcel)
     {
         // Sends the parcel to its destination
+        echo "<br>I am in the ship method";
         return true;
+    }
+
+    public function calculateShipping($parcel)
+    {
+      // look up the rate for the destination, we'll invent one
+      $rate = 1.78;
+
+      // calculate the courier_list
+      $cost = $rate * $parcel->weight;
+      return $cost;
     }
 
     public static function getCouriersByCountry($country)
@@ -23,6 +41,28 @@ class Courier
         // Get a list of couriers with their home_country = $country
       // create a Courier object for each result
       // return an array of the results
+      echo "<br>This is a static method whit the argument: " . $country;
       return $courier_list;
     }
+}
+
+class MonotypeDelivery extends Courier
+{
+  public function ship($parcel)
+  {
+    // put in box
+    // send
+    return true;
+  }
+}
+
+class PigeonPost extends Courier
+{
+  public function ship(Parcel $parcel)
+  {
+    // fetch pigeon
+    // attach parcel
+    //send
+    return true;
+  }
 }
