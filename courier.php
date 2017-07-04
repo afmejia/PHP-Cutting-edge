@@ -20,7 +20,7 @@ class Courier
 
     public static function getCouriersByCountry($country)
     {
-      // Get a list of couriers with their home_country = $country
+        // Get a list of couriers with their home_country = $country
       // create a Courier object for each result
       // return an array of the results
       return $courier_list;
