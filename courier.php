@@ -1,10 +1,5 @@
 <?php
-<<<<<<< HEAD
 namespace shop\shipping;
-
-=======
-namespace shipping;
->>>>>>> cb74eba8a78ad4e6e9555b9624e734ffa6f9946b
 class Parcel
 {
   public $weight;
