@@ -6,12 +6,11 @@
   </head>
   <body>
       <?php
-      require 'courier.php';
-
+      require 'script.php';
       //without namespace
       /*function __autoload($classname) {
         include strtolower($classname) . '.php';
-      }*/
+      }
 
       $mono = new shipping\Courier('Monospace Delivery');
       var_dump($mono);
@@ -19,7 +18,7 @@
 
       // Calling a method
       $mono->ship($parcel);
-      $spanish_couriers = shipping\Courier::getCouriersByCountry('Spain');
+      $spanish_couriers = shipping\Courier::getCouriersByCountry('Spain');*/
      ?>
   </body>
 </html>

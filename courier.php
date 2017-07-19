@@ -1,5 +1,5 @@
 <?php
-namespace shipping;
+namespace shop\shipping;
 
 class Parcel
 {
@@ -16,6 +16,7 @@ class Courier
     public function __construct($name)
     {
         $this -> name = $name;
+        echo "I am the constructor";
         return true;
     }
 
