@@ -2,34 +2,50 @@
 namespace shop\shipping;
 class Parcel
 {
-  public $weight;
-  public $destinationAddress;
-  public $destinationCountry;
+  protected $weight;
+  protected $destinationCountry;
+
+  public function setWeight($weight)
+  {
+    echo "weight set to: " . $weight . "<br>";
+    $this->weight = $weight;
+    return $this;
+  }
+
+  public function setCountry($country)
+  {
+    echo "destination country is: " . $country . "<br>";
+    $this->destinationCountry = $country;
+    return $this;
+  }
 }
 class Courier
 {
     public $name;
     public $home_country;
+
     public function __construct($name)
     {
         $this -> name = $name;
-        echo "I am the constructor";
         return true;
     }
-    public function ship($parcel)
+
+    public function ship(Parcel $parcel)
     {
         // Sends the parcel to its destination
         echo "<br>I am in the ship method";
         return true;
     }
+
     public function calculateShipping($parcel)
     {
       // look up the rate for the destination, we'll invent one
-      $rate = 1.78;
-      // calculate the courier_list
+      $rate = $this->getShippingRateForCountry($parcel->destinationCountry);
+      // calculate the cost
       $cost = $rate * $parcel->weight;
       return $cost;
     }
+
     public static function getCouriersByCountry($country)
     {
         // Get a list of couriers with their home_country = $country
@@ -37,6 +53,13 @@ class Courier
       // return an array of the results
       echo "<br>This is a static method whit the argument: " . $country;
       return $courier_list;
+    }
+
+    private function getShippingRateForCountry($country)
+    {
+      // Some excelent rate calculating code goes here for the example, we'll
+      // just think of a Number
+      return 1.2;
     }
 }
 class MonotypeDelivery extends Courier
