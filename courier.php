@@ -8,9 +8,22 @@ interface Trackable
 
 class Parcel
 {
-  public $weight;
-  public $destinationAddress;
-  public $destinationCountry;
+  protected $weight;
+  protected $destinationCountry;
+
+  public function setWeight($weight)
+  {
+    echo "weight set to: " . $weight . "<br>";
+    $this->weight = $weight;
+    return $this;
+  }
+
+  public function setCountry($country)
+  {
+    echo "destination country is: " . $country . "<br>";
+    $this->destinationCountry = $country;
+    return $this;
+  }
 }
 
 class Courier implements \Countable
@@ -38,6 +51,8 @@ class Courier implements \Countable
       $rate = 1.78;
 
       // calculate the courier_list
+      $rate = $this->getShippingRateForCountry($parcel->destinationCountry);
+      // calculate the cost
       $cost = $rate * $parcel->weight;
       return $cost;
     }
@@ -54,6 +69,12 @@ class Courier implements \Countable
     public function count()
     {
       return $this->count;
+    }
+    private function getShippingRateForCountry($country)
+    {
+      // Some excelent rate calculating code goes here for the example, we'll
+      // just think of a Number
+      return 1.2;
     }
 }
 
